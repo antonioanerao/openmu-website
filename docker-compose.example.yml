@@ -1,0 +1,39 @@
+version: "3.3"
+services:
+
+  traefik:
+    image: "traefik:v2.4"
+    container_name: "traefik"
+    restart: always
+    command:
+      - "--log.level=DEBUG"
+      - "--api.insecure=true"
+      - "--providers.docker=true"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+    ports:
+      - "80:80"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+    networks:
+      - proxy
+
+  openmu-web:
+    container_name: openmu-web
+    image: antonioanerao/laravel:latest
+    restart: always
+    networks:
+      - proxy
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./:/laravel
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=proxy"
+      - "traefik.http.routers.openmu-web.rule=Host(`mu.docker.localhost`)"
+      - "traefik.http.routers.openmu-web.entrypoints=web"
+
+networks:
+  proxy:
+    external: true
