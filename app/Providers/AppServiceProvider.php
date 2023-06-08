@@ -2,23 +2,34 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Pagination\Paginator;
 
 class AppServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
+     *
+     * @return void
      */
-    public function register(): void
+    public function register()
     {
         //
     }
 
     /**
      * Bootstrap any application services.
+     *
+     * @return void
      */
-    public function boot(): void
+    public function boot()
     {
-        //
+        if (config('app.ssl')) {
+            URL::forceScheme('https');
+	}
+
+        URL::forceRootUrl(config('app.url'));
+	Paginator::useBootstrap();
     }
 }
