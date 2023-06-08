@@ -7,6 +7,19 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | MuOnline default values
+    |--------------------------------------------------------------------------
+    |
+    | Here you can set default values for account registration.
+    | For now you can only set default value for like initial money,
+    | but you can expect default value for gold and and vip in the future.
+    |
+     */
+
+    'vault_money' => env('VAULT_MONEY', 0),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Name
     |--------------------------------------------------------------------------
     |

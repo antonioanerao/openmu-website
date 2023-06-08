@@ -13,6 +13,7 @@ class User extends Authenticatable
 
     protected $table = 'data.Account';
     protected $primaryKey = 'Id';
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
@@ -20,9 +21,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'Id', 'LoginName', 'VaultId', 'PasswordHash', 'SecurityCode', 'EMail',
+        'RegistrationDate', 'State', 'TimeZone', 'VaultPassword', 'IsVaultExtended'
     ];
 
     /**
@@ -31,8 +31,7 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $hidden = [
-        'password',
-        'remember_token',
+        'PasswordHash', 'SecurityCode', 'VaultPassword', 'remember_token',
     ];
 
     /**
@@ -41,8 +40,7 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
-        'password' => 'hashed',
-        'Id' => 'string'
+        'email_verified_at' => 'datetime', 'password' => 'hashed', 'Id' => 'string',
+        'VaultId' => 'string'
     ];
 }

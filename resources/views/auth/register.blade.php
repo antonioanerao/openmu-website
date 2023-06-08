@@ -12,12 +12,12 @@
                         @csrf
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                            <label for="LoginName" class="col-md-4 col-form-label text-md-end">Login Name</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                                <input id="LoginName" type="text" class="form-control @error('LoginName') is-invalid @enderror" name="LoginName" value="{{ old('LoginName') }}" required autocomplete="LoginName" autofocus>
 
-                                @error('name')
+                                @error('LoginName')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -26,12 +26,11 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+                            <label for="EMail" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
+                                <input id="EMail" type="email" class="form-control @error('EMail') is-invalid @enderror" name="EMail" value="{{ old('EMail') }}" required autocomplete="EMail">
+                                @error('EMail')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -40,12 +39,11 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+                            <label for="SecurityCode" class="col-md-4 col-form-label text-md-end">{{ __('Security Code') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
+                                <input id="SecurityCode" type="password" class="form-control @error('SecurityCode') is-invalid @enderror" name="SecurityCode" value="{{ old('SecurityCode') }}" required autocomplete="SecurityCode">
+                                @error('SecurityCode')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -54,10 +52,23 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+                            <label for="PasswordHash" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                                <input id="PasswordHash" type="password" class="form-control @error('PasswordHash') is-invalid @enderror" name="PasswordHash" required autocomplete="new-PasswordHash">
+                                @error('PasswordHash')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="PasswordHash-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="PasswordHash-confirm" type="password" class="form-control" name="PasswordHash_confirmation" required autocomplete="new-PasswordHash">
                             </div>
                         </div>
 
