@@ -12,6 +12,7 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Resets</th>
+                                    <th scope="col">Level</th>
                                     <th scope="col">Points</th>
                                     <th scope="col">#</th>
                                 </tr>
@@ -19,8 +20,9 @@
                             <tbody>
                                 @forelse(auth()->user()->characters as $character)
                                     <tr>
-                                        <td>{{ $character->getLevel() }}</td>
+                                        <td>{{ $character->Name }}</td>
                                         <td>{{ $character->getReset() }}</td>
+                                        <td>{{ $character->getLevel() }}</td>
                                         <td>{{ $character->LevelUpPoints }}</td>
                                         <td><a href="{{ route('character.edit', $character->Id) }}">View</a>
                                     </tr>
