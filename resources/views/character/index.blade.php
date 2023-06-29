@@ -19,7 +19,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse(auth()->user()->characters as $character)
+                                @forelse(auth()->user()->characters->load(['statAttribute']) as $character)
                                     <tr>
                                         <td>{{ $character->characterClass->Name }}</td>
                                         <td>{{ $character->Name }}</td>

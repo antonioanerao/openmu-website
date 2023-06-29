@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use \App\Models\ConfigCharacterClass;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Character extends Model
 {
@@ -37,11 +38,16 @@ class Character extends Model
      */
     public function statAttribute() {
         return $this->hasMany(DataStatAttribute::class, 'CharacterId', 'Id')
+            ->whereIn('DefinitionId', [ConfigAttributeDefinition::RESET_ID, ConfigAttributeDefinition::LEVEL_ID])
             ->with('attributeDefinition');
     }
 
-
-    public function characterClass() {
+    /**
+     * Get the class name
+     *
+     * @return HasOne
+     */
+    public function characterClass(): HasOne {
         return $this->hasOne(ConfigCharacterClass::class, 'Id', 'CharacterClassId')
             ->select('Name');
     }
@@ -53,7 +59,7 @@ class Character extends Model
      */
     public function getReset(): int {
         return $this->statAttribute
-            ->where('DefinitionId', ConfigAttributeDefinition::getDefinition(ConfigAttributeDefinition::RESET_DEFINITION))
+            ->where('DefinitionId', ConfigAttributeDefinition::RESET_ID)
             ->first()['Value'];
     }
 
@@ -64,7 +70,7 @@ class Character extends Model
      */
     public function getLevel() {
         return $this->statAttribute
-            ->where('DefinitionId', ConfigAttributeDefinition::getDefinition(ConfigAttributeDefinition::LEVEL_DEFINITION))
+            ->where('DefinitionId', ConfigAttributeDefinition::LEVEL_ID)
             ->first()['Value'];
     }
 }

@@ -18,7 +18,6 @@ class DataStatAttribute extends Model
      */
     protected $casts = [
         'Id' => 'string', 'DefinitionId' => 'string', 'CharacterId' => 'string',
-
     ];
 
     /**

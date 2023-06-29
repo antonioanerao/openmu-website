@@ -15,7 +15,7 @@ class CharacterController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(): View
+    public function index()
     {
         return view('character/index');
     }
