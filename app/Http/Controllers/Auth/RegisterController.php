@@ -52,7 +52,7 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'LoginName' => ['required', 'string', 'max:255', 'unique:pgsql.data.Account'],
+            'LoginName' => ['required', 'string', 'max:10', 'unique:pgsql.data.Account'],
             'EMail' => ['required', 'string', 'email', 'max:255', 'unique:pgsql.data.Account'],
             'SecurityCode' => ['required', 'string', 'min:6', 'max:6'],
             'PasswordHash' => ['required', 'string', 'min:8', 'confirmed'],
