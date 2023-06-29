@@ -8,7 +8,20 @@
                 <div class="card-header"><b>{{ $character->Name }}</b></div>
 
                 <div class="card-body">
-                    <!-- Stuff -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Level</th>
+                                <th scope="col">Resets</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ $character->getLevel() }}</td>
+                                <td>{{ $character->getReset() }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

@@ -19,8 +19,8 @@
                             <tbody>
                                 @forelse(auth()->user()->characters as $character)
                                     <tr>
-                                        <td>{{ $character->Name }}</td>
-                                        <td>{{ $character->Resets }}</td>
+                                        <td>{{ $character->getLevel() }}</td>
+                                        <td>{{ $character->getReset() }}</td>
                                         <td>{{ $character->LevelUpPoints }}</td>
                                         <td><a href="{{ route('character.edit', $character->Id) }}">View</a>
                                     </tr>
