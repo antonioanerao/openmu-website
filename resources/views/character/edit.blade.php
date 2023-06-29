@@ -11,6 +11,7 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <th scope="col">Class</th>
                                 <th scope="col">Level</th>
                                 <th scope="col">Resets</th>
                                 <th scope="col">Points</th>
@@ -20,6 +21,7 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>{{ $character->characterClass->Name }}</td>
                                 <td>{{ $character->getLevel() }}</td>
                                 <td>{{ $character->getReset() }}</td>
                                 <td>{{ $character->MasterLevelUpPoints }}</td>

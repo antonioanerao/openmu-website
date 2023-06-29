@@ -10,6 +10,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th scope="col">Class</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Resets</th>
                                     <th scope="col">Level</th>
@@ -20,6 +21,7 @@
                             <tbody>
                                 @forelse(auth()->user()->characters as $character)
                                     <tr>
+                                        <td>{{ $character->characterClass->Name }}</td>
                                         <td>{{ $character->Name }}</td>
                                         <td>{{ $character->getReset() }}</td>
                                         <td>{{ $character->getLevel() }}</td>

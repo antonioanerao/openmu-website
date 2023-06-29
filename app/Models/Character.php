@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use \App\Models\ConfigCharacterClass;
 
 class Character extends Model
 {
@@ -37,6 +38,12 @@ class Character extends Model
     public function statAttribute() {
         return $this->hasMany(DataStatAttribute::class, 'CharacterId', 'Id')
             ->with('attributeDefinition');
+    }
+
+
+    public function characterClass() {
+        return $this->hasOne(ConfigCharacterClass::class, 'Id', 'CharacterClassId')
+            ->select('Name');
     }
 
     /**
