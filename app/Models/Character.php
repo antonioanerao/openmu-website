@@ -38,7 +38,10 @@ class Character extends Model
      */
     public function statAttribute() {
         return $this->hasMany(DataStatAttribute::class, 'CharacterId', 'Id')
-            ->whereIn('DefinitionId', [ConfigAttributeDefinition::RESET_ID, ConfigAttributeDefinition::LEVEL_ID])
+            ->whereIn('DefinitionId', [
+                ConfigAttributeDefinition::RESET_ID, ConfigAttributeDefinition::LEVEL_ID,
+                ConfigAttributeDefinition::BASE_ENERGY_ID
+            ])
             ->with('attributeDefinition');
     }
 
@@ -73,4 +76,11 @@ class Character extends Model
             ->where('DefinitionId', ConfigAttributeDefinition::LEVEL_ID)
             ->first()['Value'];
     }
+
+    public function getTotalEnergy() {
+        return $this->statAttribute
+            ->where('DefinitionId', ConfigAttributeDefinition::BASE_ENERGY_ID)
+            ->first()['Value'];
+    }
+
 }

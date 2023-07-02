@@ -21,7 +21,7 @@
                                 <th scope="col">Str</th>
                                 <th scope="col">Agi</th>
                                 <th scope="col">Vit</th>
-                                <th scope="col">Ene</th>
+                                <th scope="col">Ene {{ $character->getTotalEnergy() }}</th>
                             </tr>
                         </thead>
                         <tbody>
