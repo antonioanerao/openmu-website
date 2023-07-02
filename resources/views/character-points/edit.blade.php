@@ -15,24 +15,23 @@
 
             <div class="card mt-4">
                 <div class="card-body">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Str</th>
-                                <th scope="col">Agi</th>
-                                <th scope="col">Vit</th>
-                                <th scope="col">Ene {{ $character->getTotalEnergy() }}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td><input class="form-control" name="str"></td>
-                                <td><input class="form-control" name="str"></td>
-                                <td><input class="form-control" name="str"></td>
-                                <td><input class="form-control" name="str"></td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <form method="post" action="{{ route('character-points.update', $character->Id) }}">
+                        @csrf @method('PATCH')
+                        <table class="table">
+                            @foreach($character->getBasePoints() as $p)
+                                <div class="row mb-4">
+                                    <div class="col-md-6">
+                                        {{ $p->attributeDefinition[0]->Designation }} ({{ $p->Value}})
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input class="form-control" name="{{ str_replace('base-', '', Str::slug($p->attributeDefinition[0]->Designation)) }}">
+                                    </div>
+                                </div>
+                            @endforeach
+                        </table>
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                    </form>
                 </div>
             </div>
         </div>

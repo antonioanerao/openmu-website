@@ -40,9 +40,16 @@ class Character extends Model
         return $this->hasMany(DataStatAttribute::class, 'CharacterId', 'Id')
             ->whereIn('DefinitionId', [
                 ConfigAttributeDefinition::RESET_ID, ConfigAttributeDefinition::LEVEL_ID,
-                ConfigAttributeDefinition::BASE_ENERGY_ID
             ])
             ->with('attributeDefinition');
+    }
+
+    public function getBasePoints() {
+        return $this->hasMany(DataStatAttribute::class, 'CharacterId', 'Id')
+            ->whereIn('DefinitionId', [
+                ConfigAttributeDefinition::BASE_ENERGY_ID, ConfigAttributeDefinition::BASE_STRENGHT_ID
+            ])
+            ->with('attributeDefinition')->get();
     }
 
     /**

@@ -13,6 +13,9 @@ class ConfigAttributeDefinition extends Model
     const RESET_ID = '89a891a7-f9f9-4ab5-af36-12056e53a5f7';
     const LEVEL_ID = '560931ad-0901-4342-b7f4-fd2e2fcc0563';
     const BASE_ENERGY_ID = '01b0ef28-f7a0-46b5-97ba-2b624a54cd75';
+    const BASE_STRENGHT_ID = '123282fe-fead-448e-ad2c-baece939b4b1';
+    // const BASE_ENERGY_ID = 'Base Energy';
+    // const BASE_STRENGHT_ID = 'Base Strength';
 
     protected $table = 'config.AttributeDefinition';
     protected $primaryKey = 'Id';
@@ -26,4 +29,8 @@ class ConfigAttributeDefinition extends Model
     protected $casts = [
         'Id' => 'string', 'GameConfigurationId' => 'string'
     ];
+
+    public function value() {
+        return $this->hasOne(DataStatAttribute::class, 'DefinitionId', 'Id');
+    }
 }

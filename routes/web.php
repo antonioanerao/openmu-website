@@ -27,4 +27,6 @@ Route::resource('character', CharacterController::class);
 Route::group(['prefix' => 'character-points'], function() {
     Route::get('{character}/edit', [CharacterPointsController::class, 'edit'])
         ->name('character-points.edit');
+    Route::PATCH('{character}/update', [CharacterPointsController::class, 'update'])
+        ->name('character-points.update');
 });

@@ -15,7 +15,10 @@ class CharacterPointsController extends Controller
     }
 
     public function edit(Character $character) {
-        // return $character->statAttribute;
         return view('character-points.edit', compact('character'));
+    }
+
+    public function update() {
+        return request()->all();
     }
 }
