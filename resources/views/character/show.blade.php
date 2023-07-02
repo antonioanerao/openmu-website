@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
             <div class="card">
                 <div class="card-header"><b>{{ $character->Name }}</b></div>
 
@@ -17,6 +17,7 @@
                                 <th scope="col">Points</th>
                                 <th scope="col">M. Level Points</th>
                                 <th scope="col">Kill Points</th>
+                                <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -27,6 +28,21 @@
                                 <td>{{ $character->MasterLevelUpPoints }}</td>
                                 <td>{{ $character->LevelUpPoints }}</td>
                                 <td>{{ $character->PlayerKillCount }}</td>
+                                <td>
+                                    <div class="dropdown">
+                                        <button class="btn btn-sm btn-secondary dropdown-toggle"
+                                                type="button" id="dropdownMenuButton"
+                                                data-toggle="dropdown" aria-haspopup="true"
+                                                aria-expanded="false"
+                                        >
+                                            Options
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                            <a class="dropdown-item" href="#">Reset</a>
+                                            <a class="dropdown-item" href="#">Add Points</a>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>

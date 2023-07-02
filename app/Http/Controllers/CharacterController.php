@@ -20,7 +20,11 @@ class CharacterController extends Controller
         return view('character/index');
     }
 
+    public function show(Character $character) {
+        return view('character/show', compact('character'));
+    }
+
     public function edit(Character $character) {
-        return view('character/edit', compact('character'));
+        return $character;
     }
 }

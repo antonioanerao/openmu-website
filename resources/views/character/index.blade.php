@@ -26,7 +26,7 @@
                                         <td>{{ $character->getReset() }}</td>
                                         <td>{{ $character->getLevel() }}</td>
                                         <td>{{ $character->LevelUpPoints }}</td>
-                                        <td><a href="{{ route('character.edit', $character->Id) }}">View</a>
+                                        <td><a href="{{ route('character.show', $character->Id) }}">View</a>
                                     </tr>
                                 @empty
                                     <div class="alert alert-info">
