@@ -17,7 +17,6 @@
                                 <th scope="col">Points</th>
                                 <th scope="col">M. Level Points</th>
                                 <th scope="col">Kill Points</th>
-                                <th scope="col">#</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -28,21 +27,6 @@
                                 <td>{{ $character->MasterLevelUpPoints }}</td>
                                 <td>{{ $character->LevelUpPoints }}</td>
                                 <td>{{ $character->PlayerKillCount }}</td>
-                                <td>
-                                    <div class="dropdown">
-                                        <button class="btn btn-sm btn-secondary dropdown-toggle"
-                                                type="button" id="dropdownMenuButton"
-                                                data-toggle="dropdown" aria-haspopup="true"
-                                                aria-expanded="false"
-                                        >
-                                            Options
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Reset</a>
-                                            <a class="dropdown-item" href="{{ route('character-points.edit', $character->Id) }}">Add Points</a>
-                                        </div>
-                                    </div>
-                                </td>
                             </tr>
                         </tbody>
                     </table>
