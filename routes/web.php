@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CharacterController;
+use App\Http\Controllers\CharacterPointsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,3 +23,8 @@ Route::get('/', function () {
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('character', CharacterController::class);
+
+Route::group(['prefix' => 'character-points'], function() {
+    Route::get('{character}/edit', [CharacterPointsController::class, 'edit'])
+        ->name('character-points.edit');
+});

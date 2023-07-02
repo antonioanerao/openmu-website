@@ -8,25 +8,28 @@
                 <div class="card-header"><b>{{ $character->Name }}</b></div>
 
                 <div class="card-body">
+                    <x-character.status :character="$character"></x-character.status>
+                </div>
+            </div>
+
+
+            <div class="card mt-4">
+                <div class="card-body">
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">Class</th>
-                                <th scope="col">Level</th>
-                                <th scope="col">Resets</th>
-                                <th scope="col">Points</th>
-                                <th scope="col">M. Level Points</th>
-                                <th scope="col">Kill Points</th>
+                                <th scope="col">Str</th>
+                                <th scope="col">Agi</th>
+                                <th scope="col">Vit</th>
+                                <th scope="col">Ene</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{ $character->characterClass->Name }}</td>
-                                <td>{{ $character->getLevel() }}</td>
-                                <td>{{ $character->getReset() }}</td>
-                                <td>{{ $character->MasterLevelUpPoints }}</td>
-                                <td>{{ $character->LevelUpPoints }}</td>
-                                <td>{{ $character->PlayerKillCount }}</td>
+                                <td><input class="form-control" name="str"></td>
+                                <td><input class="form-control" name="str"></td>
+                                <td><input class="form-control" name="str"></td>
+                                <td><input class="form-control" name="str"></td>
                             </tr>
                         </tbody>
                     </table>
