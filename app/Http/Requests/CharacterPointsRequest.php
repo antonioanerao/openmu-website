@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Character;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CharacterPointsRequest extends FormRequest
 {
@@ -11,7 +13,7 @@ class CharacterPointsRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +24,10 @@ class CharacterPointsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'energy' => 'required|int|min:0',
+            'strength' => 'required|int|min:0',
+            'agility' => 'required|int|min:0',
+            'vitality' => 'required|int|min:0',
         ];
     }
 }

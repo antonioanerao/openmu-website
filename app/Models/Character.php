@@ -46,14 +46,6 @@ class Character extends Model
             ->with('attributeDefinition');
     }
 
-    public function getBasePoints() {
-        return $this->hasMany(DataStatAttribute::class, 'CharacterId', 'Id')
-            ->whereIn('DefinitionId', [
-                ConfigAttributeDefinition::BASE_ENERGY_ID, ConfigAttributeDefinition::BASE_STRENGHT_ID
-            ])
-            ->with('attributeDefinition')->get();
-    }
-
     /**
      * Get the class name
      *

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CharacterPointsRequest;
 use App\Models\Character;
-use App\Models\ConfigAttributeDefinition;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class CharacterPointsController extends Controller
 {
@@ -20,7 +23,14 @@ class CharacterPointsController extends Controller
         return view('character-points.edit', compact('character'));
     }
 
-    public function update() {
-        return request()->all();
+    public function update(Character $character, CharacterPointsRequest $request) {
+        $data = $request->validated();
+        $data += $request->validate([
+            'leadership' => ['int', 'min:0', Rule::requiredIf(function () use ($character)  {
+                return in_array($character->characterClass->Name, ['Dark Lord', 'Lord Emperor']);
+            }),],
+        ]);
+
+        return $data;
     }
 }

@@ -51,7 +51,7 @@ class ConfigAttributeDefinition extends Model
      * @return Collection
      */
     public static function basePoints($CharacterId): Collection {
-        return self::distinct()->whereIn('Designation', ['Base Energy', 'Base Strength', 'Base Vitality', 'Base Agility'])
+        return self::distinct()->whereIn('Designation', ['Base Strength', 'Base Agility', 'Base Vitality', 'Base Energy', 'Base Leadership'])
             ->join(DataStatAttribute::getTableName(), DataStatAttribute::getTableName().'.DefinitionId', self::getTableName().'.Id')
             ->join(Character::getTableName(), Character::getTableName().'.Id', DataStatAttribute::getTableName().'.CharacterId')
             ->where(DataStatAttribute::getTableName().'.CharacterId', $CharacterId)

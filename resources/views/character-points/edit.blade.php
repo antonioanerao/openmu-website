@@ -18,6 +18,7 @@
 
                     <form method="post" action="{{ route('character-points.update', $character->Id) }}">
                         @csrf @method('PATCH')
+
                         <table class="table">
                             @foreach(\App\Models\ConfigAttributeDefinition::basePoints($character->Id) as $p)
                                 <div class="row mb-4">
@@ -26,6 +27,11 @@
                                     </div>
                                     <div class="col-md-6">
                                         <input class="form-control" name="{{ str_replace('base-', '', Str::slug($p->Designation)) }}">
+                                        @error(str_replace('base-', '', Str::slug($p->Designation)))
+                                            <span class="text-danger" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
                                     </div>
                                 </div>
                             @endforeach
