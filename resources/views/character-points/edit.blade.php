@@ -19,13 +19,13 @@
                     <form method="post" action="{{ route('character-points.update', $character->Id) }}">
                         @csrf @method('PATCH')
                         <table class="table">
-                            @foreach($character->getBasePoints() as $p)
+                            @foreach(\App\Models\ConfigAttributeDefinition::basePoints($character->Id) as $p)
                                 <div class="row mb-4">
                                     <div class="col-md-6">
-                                        {{ $p->attributeDefinition[0]->Designation }} ({{ $p->Value}})
+                                        {{ $p->Designation }} ({{ $p->Value}})
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" name="{{ str_replace('base-', '', Str::slug($p->attributeDefinition[0]->Designation)) }}">
+                                        <input class="form-control" name="{{ str_replace('base-', '', Str::slug($p->Designation)) }}">
                                     </div>
                                 </div>
                             @endforeach

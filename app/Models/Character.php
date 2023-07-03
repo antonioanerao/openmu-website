@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use \App\Models\ConfigCharacterClass;
+use App\Models\Traits\DatabaseTrait;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Character extends Model
 {
+    use DatabaseTrait;
     protected $table = 'data.Character';
     protected $primaryKey = 'Id';
     protected $keyType = 'string';
@@ -20,7 +22,7 @@ class Character extends Model
     protected $casts = [
         'Id' => 'string', 'CharacterClassId' => 'string',
         'CurrentMapId' => 'string', 'InventoryId' => 'string',
-        'AccountId' => 'string',
+        'AccountId' => 'string', 'KeyConfiguration' => 'string'
     ];
 
     /**

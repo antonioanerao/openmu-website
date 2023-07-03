@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\DatabaseTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class DataStatAttribute extends Model
 {
+    use DatabaseTrait;
     protected $table = 'data.StatAttribute';
     protected $primaryKey = 'Id';
     protected $keyType = 'string';

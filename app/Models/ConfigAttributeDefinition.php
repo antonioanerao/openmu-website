@@ -2,10 +2,15 @@
 
 namespace App\Models;
 
+use App\Models\Traits\DatabaseTrait;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Collection;
 
 class ConfigAttributeDefinition extends Model
 {
+    use HasUuids, DatabaseTrait;
+
     /**
      * Constants to get the Attribute Definition ID
      * from config.AttributeDefinition table
@@ -14,12 +19,17 @@ class ConfigAttributeDefinition extends Model
     const LEVEL_ID = '560931ad-0901-4342-b7f4-fd2e2fcc0563';
     const BASE_ENERGY_ID = '01b0ef28-f7a0-46b5-97ba-2b624a54cd75';
     const BASE_STRENGHT_ID = '123282fe-fead-448e-ad2c-baece939b4b1';
-    // const BASE_ENERGY_ID = 'Base Energy';
-    // const BASE_STRENGHT_ID = 'Base Strength';
 
     protected $table = 'config.AttributeDefinition';
     protected $primaryKey = 'Id';
     protected $keyType = 'string';
+
+    /**
+     * KeyConfiguration is hidden by default to
+     * do not throw an error when ussing Character::all()
+     *
+     */
+    protected $hidden = ['KeyConfiguration'];
 
     /**
      * The attributes that should be cast.
@@ -33,4 +43,19 @@ class ConfigAttributeDefinition extends Model
     public function value() {
         return $this->hasOne(DataStatAttribute::class, 'DefinitionId', 'Id');
     }
+
+    /**
+     * Return the given base status from a given Character
+     *
+     * @param Uuid $CharacterId The Character Id
+     * @return Collection
+     */
+    public static function basePoints($CharacterId): Collection {
+        return self::distinct()->whereIn('Designation', ['Base Energy', 'Base Strength', 'Base Vitality', 'Base Agility'])
+            ->join(DataStatAttribute::getTableName(), DataStatAttribute::getTableName().'.DefinitionId', self::getTableName().'.Id')
+            ->join(Character::getTableName(), Character::getTableName().'.Id', DataStatAttribute::getTableName().'.CharacterId')
+            ->where(DataStatAttribute::getTableName().'.CharacterId', $CharacterId)
+            ->get();
+    }
+
 }
