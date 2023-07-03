@@ -14,8 +14,8 @@
             <td>{{ $character->characterClass->Name }}</td>
             <td>{{ $character->getLevel() }}</td>
             <td>{{ $character->getReset() }}</td>
-            <td>{{ $character->MasterLevelUpPoints }}</td>
             <td>{{ $character->LevelUpPoints }}</td>
+            <td>{{ $character->MasterLevelUpPoints }}</td>
             <td>{{ $character->PlayerKillCount }}</td>
         </tr>
     </tbody>

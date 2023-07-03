@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CharacterPointsRequest;
 use App\Models\Character;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
 class CharacterPointsController extends Controller
@@ -19,7 +17,6 @@ class CharacterPointsController extends Controller
     }
 
     public function edit(Character $character) {
-        // return ConfigAttributeDefinition::basePoints($character->Id);
         return view('character-points.edit', compact('character'));
     }
 
@@ -31,6 +28,8 @@ class CharacterPointsController extends Controller
             }),],
         ]);
 
-        return $data;
+        if(array_sum($data) > $character->LevelUpPoints) {
+            return back()->with('error', 'You just have '.$character->LevelUpPoints.' points to add')->withInput();
+        }
     }
 }

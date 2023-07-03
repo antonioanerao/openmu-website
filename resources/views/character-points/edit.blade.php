@@ -4,6 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if(session('error'))
+                <div class="alert alert-danger text-center">
+                    {{ session('error') }}
+                </div>
+            @endif
+
             <div class="card">
                 <div class="card-header"><b>{{ $character->Name }}</b></div>
 
@@ -26,7 +32,7 @@
                                         {{ $p->Designation }} ({{ $p->Value}})
                                     </div>
                                     <div class="col-md-6">
-                                        <input class="form-control" name="{{ str_replace('base-', '', Str::slug($p->Designation)) }}">
+                                        <input value="{{ old(str_replace('base-', '', Str::slug($p->Designation)), 0) }}" class="form-control" name="{{ str_replace('base-', '', Str::slug($p->Designation)) }}">
                                         @error(str_replace('base-', '', Str::slug($p->Designation)))
                                             <span class="text-danger" role="alert">
                                                 <strong>{{ $message }}</strong>
