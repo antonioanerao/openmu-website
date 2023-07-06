@@ -12,6 +12,7 @@ class DataStatAttribute extends Model
     protected $table = 'data.StatAttribute';
     protected $primaryKey = 'Id';
     protected $keyType = 'string';
+    public $timestamps = false;
 
     /**
      * The attributes that should be cast.

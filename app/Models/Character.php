@@ -13,6 +13,7 @@ class Character extends Model
     protected $table = 'data.Character';
     protected $primaryKey = 'Id';
     protected $keyType = 'string';
+    public $timestamps = false;
 
     /**
      * The attributes that should be cast.
@@ -44,6 +45,14 @@ class Character extends Model
                 ConfigAttributeDefinition::RESET_ID, ConfigAttributeDefinition::LEVEL_ID,
             ])
             ->with('attributeDefinition');
+    }
+
+    public function getBasePoints() {
+        return $this->hasMany(DataStatAttribute::class, 'CharacterId', 'Id')
+            ->whereIn('DefinitionId', [
+                ConfigAttributeDefinition::BASE_ENERGY_ID, ConfigAttributeDefinition::BASE_STRENGHT_ID
+            ])
+            ->with('attributeDefinition')->get();
     }
 
     /**
