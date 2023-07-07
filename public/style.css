@@ -1,0 +1,90 @@
+/* ! tailwindcss v3.2.4 | MIT License | https://tailwindcss.com */
+.bg-gray-100{
+   --tw-bg-opacity:1;
+   background-color:rgb(243 244 246 / var(--tw-bg-opacity))
+}
+.bg-white{
+   --tw-bg-opacity:1;
+   background-color:rgb(255 255 255 / var(--tw-bg-opacity))
+}
+.bg-red-50{
+   --tw-bg-opacity:1;
+   background-color:rgb(254 242 242 / var(--tw-bg-opacity))
+}
+.bg-dots-darker{
+   background-image:url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z' fill='rgba(0,0,0,0.07)'/%3E%3C/svg%3E")
+}
+.from-gray-700\/50{
+   --tw-gradient-from:rgb(55 65 81 / 0.5);
+   --tw-gradient-to:rgb(55 65 81 / 0);
+   --tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)
+}
+.via-transparent{
+   --tw-gradient-to:rgb(0 0 0 / 0);
+   --tw-gradient-stops:var(--tw-gradient-from), transparent, var(--tw-gradient-to)
+}
+.bg-center{
+   background-position:center
+}
+.stroke-red-500{
+   stroke:#ef4444
+}
+.stroke-gray-400{
+   stroke:#9ca3af
+}
+.p-6{
+   padding:1.5rem
+}
+.px-6{
+   padding-left:1.5rem;
+   padding-right:1.5rem
+}
+.text-center{
+   text-align:center
+}
+.text-right{
+   text-align:right
+}
+.text-xl{
+   font-size:1.25rem;
+   line-height:1.75rem
+}
+.text-sm{
+   font-size:0.875rem;
+   line-height:1.25rem
+}
+.font-semibold{
+   font-weight:600
+}
+.leading-relaxed{
+   line-height:1.625
+}
+.text-gray-600{
+   --tw-text-opacity:1;
+   color:rgb(75 85 99 / var(--tw-text-opacity))
+}
+.text-gray-900{
+   --tw-text-opacity:1;
+   color:rgb(17 24 39 / var(--tw-text-opacity))
+}
+.text-gray-500{
+   --tw-text-opacity:1;
+   color:rgb(107 114 128 / var(--tw-text-opacity))
+}
+.underline{
+   -webkit-text-decoration-line:underline;
+   text-decoration-line:underline
+}
+.antialiased{
+   -webkit-font-smoothing:antialiased;
+   -moz-osx-font-smoothing:grayscale
+}
+.shadow-2xl{
+   --tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);
+   --tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);
+   box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)
+}
+.shadow-gray-500\/20{
+   --tw-shadow-color:rgb(107 114 128 / 0.2);
+   --tw-shadow:var(--tw-shadow-colored)
+}
