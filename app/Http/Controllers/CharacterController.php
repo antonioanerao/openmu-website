@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Character;
-use Illuminate\View\View;
 
 class CharacterController extends Controller
 {
@@ -13,6 +12,7 @@ class CharacterController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('verifyCharacterAccountOwner')->except('index');
     }
 
     public function index()
