@@ -6,11 +6,12 @@ This is a simple website made in Laravel for MuOnline players manage their accou
     Soon
 
 ### Todo
+- [x] Account Register
 - [x] Account Login
 - [ ] Account management
-- [ ] Character management
+- [ ] Character management (in progress)
 - [ ] Ranking
-- [ ] Dockerfile
+- [ ] Dockerfile - (very basic to start)
 
 ### Requirements
     Soon
