@@ -38,8 +38,8 @@
                                             Options
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                            <a class="dropdown-item" href="#">Reset</a>
                                             <a class="dropdown-item" href="{{ route('character-points.edit', $character->Id) }}">Add Points</a>
+                                            <a class="dropdown-item" href="{{ route('character-resets.update', $character->Id) }}">Reset</a>
                                         </div>
                                     </div>
                                 </td>

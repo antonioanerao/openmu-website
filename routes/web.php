@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CharacterController;
 use App\Http\Controllers\CharacterPointsController;
+use App\Http\Controllers\CharacterResetsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,11 +23,18 @@ Route::get('/', function () {
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('character', CharacterController::class);
 
-Route::group(['prefix' => 'character-points'], function() {
-    Route::get('{character}/edit', [CharacterPointsController::class, 'edit'])
-        ->name('character-points.edit');
-    Route::PATCH('{character}/update', [CharacterPointsController::class, 'update'])
-        ->name('character-points.update');
+Route::group(['prefix' => 'character'], function() {
+    Route::resource('character', CharacterController::class);
+    Route::group(['prefix' => 'points'], function() {
+        Route::get('{character}/edit', [CharacterPointsController::class, 'edit'])
+            ->name('character-points.edit');
+        Route::PATCH('{character}/update', [CharacterPointsController::class, 'update'])
+            ->name('character-points.update');
+    });
+    Route::group(['resets'], function() {
+        Route::get('{character}/update', [CharacterResetsController::class, 'update'])
+            ->name('character-resets.update');
+    });
 });
+
