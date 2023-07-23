@@ -49,7 +49,15 @@
                 <div class="content">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="alert alert-info text-center"><h3>Home content</h3></div>
+                            <div class="alert alert-info text-center">
+                                <h3>Home content</h3>
+                                @if($info['state'] == 'Online')
+                                    Server Status: <span style="color: green;">Online</span> -
+                                @else
+                                    Server Status: <span style="color: red;">Offline</span> -
+                                @endif
+                                Total Online: {{ $info['players'] }}
+                            </div>
                         </div>
                     </div>
                 </div>
