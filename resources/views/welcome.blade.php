@@ -54,7 +54,7 @@
                                 @if($info['state'] == 'Online')
                                     Server Status: <span style="color: green;">Online</span> -
                                 @else
-                                    Server Status: <span style="color: red;">Offline</span> -
+                                    Server Status: <span style="color: red;">{{ $info['state'] }}</span> -
                                 @endif
                                 Total Online: {{ $info['players'] }}
                             </div>

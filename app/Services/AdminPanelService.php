@@ -35,11 +35,7 @@ class AdminPanelService {
             return $this->offline();
         }
 
-        return [
-            'error' => [
-                'message' => 'Could not fetch ADMIN PANEL API data'
-            ]
-        ];
+        return array_merge($this->offline(), ['state' => 'Undefined']);
     }
 
     /**
