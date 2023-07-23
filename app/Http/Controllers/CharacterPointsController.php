@@ -16,6 +16,7 @@ class CharacterPointsController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verifyCharacterAccountOwner');
+        $this->middleware('verifyCharacterOnline');
     }
 
     public function edit(Character $character) {

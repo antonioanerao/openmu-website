@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Services\AdminPanelService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -86,5 +87,19 @@ class User extends Authenticatable
     public function characters(): HasMany
     {
         return $this->hasMany(Character::class, 'AccountId', 'Id');
+    }
+
+    /**
+     * Verify is the account has any online Character
+     *
+     * @return bool
+     */
+    public function isOnline(): bool {
+        if(auth()->check()) {
+            $charactersOnline = (new AdminPanelService())->getServerStatus()['playersList'];
+            return array_intersect($charactersOnline, $this->characters->pluck('Name')->toArray()) ? true : false;
+        }
+
+        return false;
     }
 }
