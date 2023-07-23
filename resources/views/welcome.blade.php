@@ -57,6 +57,17 @@
                                     Server Status: <span style="color: red;">{{ $info['state'] }}</span> -
                                 @endif
                                 Total Online: {{ $info['players'] }}
+
+                                @if(config('app.download_client'))
+                                    <hr>
+                                    <a href="{{ config('app.download_client') }}"><i class="fa fa-download"></i> Download Client</a>
+                                @endif
+
+                                @if(config('app.download_launcher'))
+                                    <br>
+                                    <a href="{{ config('app.download_launcher') }}"><i class="fa fa-download"></i> Download Launcher</a>
+                                @endif
+
                             </div>
                         </div>
                     </div>
