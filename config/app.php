@@ -33,6 +33,32 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Admin Panel
+    |--------------------------------------------------------------------------
+    |
+    | Admin panel URL, user and password to fetch information
+    | from API Status
+    |
+    */
+
+    'adminpanel_api' => env('ADMIN_PANEL_API'),
+    'adminpanel_user' => env('ADMIN_PANEL_USER'),
+    'adminpanel_password' => env('ADMIN_PANEL_PASSWORD'),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Download Options
+    |--------------------------------------------------------------------------
+    |
+    | Links for client and launcher download
+    |
+    */
+
+    'download_client' => env('DOWNLOAD_CLIENT'),
+    'download_launcher' => env('DOWNLOAD_LAUNCHER'),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Environment
     |--------------------------------------------------------------------------
     |

@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Services\AdminPanelService;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -46,6 +48,38 @@ class User extends Authenticatable
     ];
 
     /**
+     * Changes the defaul email column name to the
+     * reset password method
+     *
+     * @return string
+     */
+    public function getEmailForPasswordReset(): string
+    {
+        return $this->EMail;
+    }
+
+    /**
+     * Override the routeNotificationFor method to use
+     * the custom email column name. It is needed to
+     * send the e-mail reset password link
+     */
+    public function routeNotificationFor($driver)
+    {
+        if (method_exists($this, $method = 'routeNotificationFor'.Str::studly($driver))) {
+            return $this->{$method}();
+        }
+
+        switch ($driver) {
+            case 'database':
+                return $this->notifications();
+            case 'mail':
+                return $this->EMail;
+            case 'nexmo':
+                return $this->phone_number;
+        }
+    }
+
+    /**
      * Return a list of all characters from this account
      *
      * @return HasMany
@@ -53,5 +87,19 @@ class User extends Authenticatable
     public function characters(): HasMany
     {
         return $this->hasMany(Character::class, 'AccountId', 'Id');
+    }
+
+    /**
+     * Verify is the account has any online Character
+     *
+     * @return bool
+     */
+    public function isOnline(): bool {
+        if(auth()->check()) {
+            $charactersOnline = (new AdminPanelService())->getServerStatus()['playersList'];
+            return array_intersect($charactersOnline, $this->characters->pluck('Name')->toArray()) ? true : false;
+        }
+
+        return false;
     }
 }
