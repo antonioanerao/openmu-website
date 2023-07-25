@@ -55,6 +55,10 @@ class Character extends Model
             ->with('attributeDefinition')->get();
     }
 
+    public function ItemStorage() {
+        return $this->hasOne(ItemStorage::class, 'Id', 'InventoryId');
+    }
+
     /**
      * Get the class name
      *
@@ -85,6 +89,15 @@ class Character extends Model
         return $this->statAttribute
             ->where('DefinitionId', ConfigAttributeDefinition::LEVEL_ID)
             ->first()['Value'];
+    }
+
+    /**
+     * Get the amount of Money
+     *
+     * @return int
+     */
+    public function getMoney(): int {
+        return $this->ItemStorage->Money;
     }
 
     public function getTotalEnergy() {

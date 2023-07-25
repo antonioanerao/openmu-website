@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CharacterResetsRequest;
 use App\Models\Character;
 
 class CharacterResetsController extends Controller
@@ -10,9 +11,10 @@ class CharacterResetsController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('verifyCharacterAccountOwner');
+        $this->middleware('verifyCharacterOnline');
     }
 
-    public function update(Character $character) {
+    public function update(Character $character, CharacterResetsRequest $request) {
         return $character;
     }
 }
