@@ -81,6 +81,22 @@ class Character extends Model
     }
 
     /**
+     * Increment the reset count for the logged in character.
+     * Usually used after a Reset
+     *
+     * @param $reset
+     * @return void
+     */
+    public function incrementReset($reset = 1): void {
+        $stat = $this->statAttribute
+            ->where('DefinitionId', ConfigAttributeDefinition::RESET_ID)
+            ->first();
+
+        $stat->Value = $this->getReset() + $reset;
+        $stat->save();
+    }
+
+    /**
      * Get the level
      *
      * @return int
@@ -92,6 +108,21 @@ class Character extends Model
     }
 
     /**
+     * Set a new level for the logged in character.
+     * Usually used after a Reset
+     *
+     * @return void
+     */
+    public function setLevel($level = 1): void {
+        $stat = $this->statAttribute
+            ->where('DefinitionId', ConfigAttributeDefinition::LEVEL_ID)
+            ->first();
+
+        $stat->Value = $level;
+        $stat->save();
+    }
+
+    /**
      * Get the amount of Money
      *
      * @return int
@@ -100,10 +131,9 @@ class Character extends Model
         return $this->ItemStorage->Money;
     }
 
-    public function getTotalEnergy() {
-        return $this->statAttribute
-            ->where('DefinitionId', ConfigAttributeDefinition::BASE_ENERGY_ID)
-            ->first()['Value'];
+    public function disincreaseMoney(int $money) {
+        $stat = $this->ItemStorage;
+        $stat->Money = $stat->Money - $money;
+        $stat->save();
     }
-
 }
