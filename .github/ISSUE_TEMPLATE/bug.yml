@@ -11,8 +11,7 @@ body:
       id: what-doing
       attributes:
         label: What was you trying to do?
-        description: You may select more than one.
-        multiple: true
+        multiple: false
         options:
         - Deploying the website
         - Installing the website
@@ -53,8 +52,7 @@ body:
       id: operating-system
       attributes:
         label: Which operating systems did you deploy the website?
-        description: You may select more than one.
-        multiple: true
+        multiple: false
         options:
         - Windows
         - Linux x64
