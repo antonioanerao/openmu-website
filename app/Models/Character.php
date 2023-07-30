@@ -43,6 +43,8 @@ class Character extends Model
         return $this->hasMany(DataStatAttribute::class, 'CharacterId', 'Id')
             ->whereIn('DefinitionId', [
                 ConfigAttributeDefinition::RESET_ID, ConfigAttributeDefinition::LEVEL_ID,
+                ConfigAttributeDefinition::BASE_ENERGY_ID, ConfigAttributeDefinition::BASE_STRENGHT_ID,
+                ConfigAttributeDefinition::BASE_AGILITY_ID, ConfigAttributeDefinition::BASE_VITALITY_ID
             ])
             ->with('attributeDefinition');
     }
@@ -50,7 +52,8 @@ class Character extends Model
     public function getBasePoints() {
         return $this->hasMany(DataStatAttribute::class, 'CharacterId', 'Id')
             ->whereIn('DefinitionId', [
-                ConfigAttributeDefinition::BASE_ENERGY_ID, ConfigAttributeDefinition::BASE_STRENGHT_ID
+                ConfigAttributeDefinition::BASE_ENERGY_ID, ConfigAttributeDefinition::BASE_STRENGHT_ID,
+                ConfigAttributeDefinition::BASE_AGILITY_ID, ConfigAttributeDefinition::BASE_VITALITY_ID
             ])
             ->with('attributeDefinition')->get();
     }
@@ -119,6 +122,32 @@ class Character extends Model
             ->first();
 
         $stat->Value = $level;
+        $stat->save();
+    }
+
+    /**
+     * Get the Character Base Energy
+     *
+     * @return int
+     */
+    public function getTotalEnergy(): int {
+        return $this->statAttribute
+            ->where('DefinitionId', ConfigAttributeDefinition::BASE_ENERGY_ID)
+            ->first()['Value'];
+    }
+
+    /**
+     * Set a new Base Energy value for the logged in character.
+     * Usually used after a Reset.
+     *
+     * @return void
+     */
+    public function setTotalEnergy($value): void {
+        $stat = $this->statAttribute
+             ->where('DefinitionId', ConfigAttributeDefinition::BASE_ENERGY_ID)
+             ->first();
+
+        $stat->Value = $value;
         $stat->save();
     }
 

@@ -19,6 +19,8 @@ class ConfigAttributeDefinition extends Model
     const LEVEL_ID = '560931ad-0901-4342-b7f4-fd2e2fcc0563';
     const BASE_ENERGY_ID = '01b0ef28-f7a0-46b5-97ba-2b624a54cd75';
     const BASE_STRENGHT_ID = '123282fe-fead-448e-ad2c-baece939b4b1';
+    const BASE_AGILITY_ID = '1ae9c014-e3cd-4703-bd05-1b65f5f94ceb';
+    const BASE_VITALITY_ID = '6ca5c3a6-b109-45a5-87a7-fdcb107b4982';
 
     protected $table = 'config.AttributeDefinition';
     protected $primaryKey = 'Id';

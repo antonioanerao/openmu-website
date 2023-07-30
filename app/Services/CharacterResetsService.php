@@ -3,6 +3,8 @@
 namespace App\Services;
 
 use App\Models\Character;
+use App\Models\ConfigAttributeDefinition;
+use App\Models\DataStatAttribute;
 use Illuminate\Support\Facades\DB;
 use Exception;
 
@@ -27,6 +29,14 @@ class CharacterResetsService {
             $character->incrementReset();
             $character->disincreaseMoney(config('reset.cost'));
             $character->LevelUpPoints = config('reset.level_up_points_per_reset') * $character->getReset();
+            foreach((new ConfigAttributeDefinition())->basePoints($character->Id) as $key => $p) {
+                $status = DataStatAttribute::where('CharacterId', $p->CharacterId)
+                    ->where('DefinitionId', $p->DefinitionId)
+                    ->first();
+                $status->Value = array_values($this->defaultStatusPoints($character))[$key];
+                $status->save();
+
+            }
             $character->save();
 
             DB::commit();
@@ -38,13 +48,17 @@ class CharacterResetsService {
         return back()->with('alert-success', 'Your character was reseted!');
     }
 
-    // private function resetTabledLevel(Character $character) {
-    //     if($character->getReset() <= 5 ) {
-    //         return "reset lvl 100";
-    //     }
-
-    //     if($character->getReset() > 5 && $character->getReset() <= 10) {
-    //         return "reset lvl 200";
-    //     }
-    // }
+    /**
+     * Returns the default status points for a given character
+     * basese on class name
+     */
+    private function defaultStatusPoints(Character $character) {
+        switch($character->characterClass->Name) {
+            case 'Dark Knight':
+            case 'Blade Knight':
+            case 'Blade Master':
+            case 'Dragon Knight':
+                return config('character.default.status.dk');
+        }
+    }
 }
