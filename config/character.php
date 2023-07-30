@@ -47,6 +47,12 @@ return [
                 'Base Agility' => 21,
                 'Base Vitality' => 18,
             ],
+            'rf' => [
+                'Base Energy' => 20,
+                'Base Strength' => 32,
+                'Base Agility' => 27,
+                'Base Vitality' => 25,
+            ],
         ]
     ],
 ];
