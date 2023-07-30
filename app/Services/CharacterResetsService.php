@@ -10,47 +10,44 @@ use Exception;
 
 class CharacterResetsService {
 
-    public function resetCharacter(Character $character) {
+    /**
+     * Calls the Character Reset Type. Fixed or Tabled
+     *
+     * @return bool
+     */
+    public function resetCharacter(Character $character): bool {
         return $this->resetFixedLevel($character);
     }
 
-    private function resetFixedLevel(Character $character) {
-        if(config('reset.level_required') > $character->getLevel()) {
-            return back()->with('alert-warning', 'cant reset. Need lvl ' . config('reset.level_required') . '. You are ' . $character->getLevel());
-        }
-
-        if(config('reset.cost') > $character->getMoney()) {
-            return back()->with('alert-warning', 'Need more money');
-        }
-
+    /**
+     * The logic to a Fixed Reset Level
+     *
+     * @return bool
+     */
+    private function resetFixedLevel(Character $character): bool {
         DB::beginTransaction();
         try {
-            $character->setLevel();
-            $character->incrementReset();
-            $character->disincreaseMoney(config('reset.cost'));
-            $character->LevelUpPoints = config('reset.level_up_points_per_reset') * $character->getReset();
             foreach((new ConfigAttributeDefinition())->basePoints($character->Id) as $key => $p) {
                 $status = DataStatAttribute::where('CharacterId', $p->CharacterId)
                     ->where('DefinitionId', $p->DefinitionId)
                     ->first();
                 $status->Value = array_values($this->defaultStatusPoints($character))[$key];
                 $status->save();
-
             }
-            $character->save();
 
             DB::commit();
+            return true;
         } catch(Exception $e) {
             DB::rollBack();
-            return $e;
+            return false;
         }
 
-        return back()->with('alert-success', 'Your character was reseted!');
+        return false;
     }
 
     /**
      * Returns the default status points for a given character
-     * basese on class name
+     * based on class name
      */
     private function defaultStatusPoints(Character $character) {
         switch($character->characterClass->Name) {
