@@ -1,0 +1,68 @@
+name: Bug Report
+description: Report an Issue or Bug
+title: "[Bug]: "
+labels: ["bug"]
+body:
+    - type: markdown
+      attributes:
+          value: |
+              Please help us solve it by providing the following details.
+    - type: dropdown
+      id: what-doing
+      attributes:
+        label: What was you trying to do?
+        multiple: false
+        options:
+        - Deploying the website
+        - Installing the website
+        - Using the website
+    - type: textarea
+      id: what-happened
+      attributes:
+          label: What happened?
+          description: Describe with as much details as possible what happened
+          placeholder: I cannot currently do X thing because when I do, it breaks X thing.
+      validations:
+          required: true
+    - type: textarea
+      id: how-to-reproduce
+      attributes:
+          label: How to reproduce the bug
+          description: How did this occur, please add any config values used and provide a set of reliable steps if possible.
+          placeholder: When I do X I see Y.
+      validations:
+          required: true
+    - type: input
+      id: php-version
+      attributes:
+          label: PHP Version
+          description: If not using the provided container, what version of PHP are you running?
+          placeholder: 8.2.0
+      validations:
+          required: false
+    - type: input
+      id: node-version
+      attributes:
+        label: Node Version
+        description: If not using the provided container, what version of Node are you running?
+        placeholder: '18.17'
+      validations:
+          required: false
+    - type: dropdown
+      id: operating-system
+      attributes:
+        label: Which operating systems did you deploy the website?
+        multiple: false
+        options:
+        - Windows
+        - Linux x64
+        - Linux ARM64
+      validations:
+        required: true
+    - type: textarea
+      id: notes
+      attributes:
+          label: Notes
+          description: Use this field to provide any other notes that you feel might be relevant to the issue.
+      validations:
+          required: false
